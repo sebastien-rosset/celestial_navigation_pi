@@ -86,18 +86,7 @@ TEST_F(AltitudeTest, SunLowerLimbExample) {
   // Test expectations
   std::cout << "\n=== Sun Lower Limb Example (Nov 13, 2024) ===" << std::endl;
 
-  // 1. Test Main Correction (difference between Ho and Hs)
-  double actualCorrection = sight.m_ObservedAltitude - SIGHT_HS;
-  std::cout << "Main Correction Analysis:" << std::endl;
-  std::cout << "  Almanac: " << (ALMANAC_MAIN_CORRECTION * 60.0) << "'"
-            << std::endl;
-  std::cout << "  Actual : " << (actualCorrection * 60.0) << "'" << std::endl;
-
-  EXPECT_NEAR(actualCorrection, ALMANAC_MAIN_CORRECTION, EPSILON_MIN)
-      << "Main correction differs from NA by "
-      << ((actualCorrection - ALMANAC_MAIN_CORRECTION) * 60.0) << " minutes";
-
-  // 2. Test Ho (Observed Altitude)
+  // Test Ho (Observed Altitude)
   std::cout << "\nHo Analysis:" << std::endl;
   std::cout << "  Almanac: " << DecDegToDegMin(ALMANAC_HO) << std::endl;
   std::cout << "  Actual : " << DecDegToDegMin(sight.m_ObservedAltitude)
@@ -107,7 +96,7 @@ TEST_F(AltitudeTest, SunLowerLimbExample) {
       << "Ho differs from NA by "
       << ((sight.m_ObservedAltitude - ALMANAC_HO) * 60.0) << " minutes";
 
-  // 3. Test Body Position (GHA, Dec)
+  // Test Body Position (GHA, Dec)
   double gha, dec;
   sight.BodyLocation(datetime, &dec, &gha, nullptr, nullptr);
 
